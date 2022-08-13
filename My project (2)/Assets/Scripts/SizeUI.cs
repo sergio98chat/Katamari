@@ -11,6 +11,6 @@ public class SizeUI : MonoBehaviour
 
     void Update()
     {
-        Size.text = "Size: " + Player.size.ToString();
+        Size.text = "Size: " + Player.size.ToString("#.###");
     }
 }
