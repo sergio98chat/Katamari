@@ -8,6 +8,8 @@ public class LeaderBoard : MonoBehaviour
     public TMP_Text n1, n2, n3, n4, n5, n6, n7, n8, n9, n10;//name for each of the places
     public TMP_Text s1, s2, s3, s4, s5, s6, s7, s8, s9, s10;//score for each place
 
+
+
     void Start()
     {
 

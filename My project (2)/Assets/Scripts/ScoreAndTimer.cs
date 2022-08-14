@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using LootLocker.Requests;
 
 public class ScoreAndTimer : MonoBehaviour
 {
@@ -10,7 +11,11 @@ public class ScoreAndTimer : MonoBehaviour
     public TMP_Text Size;
     public TMP_Text Highscore;
 
-    float HighScore;
+    public int ID;
+
+    //string MemberID= "123456";
+
+    float Score;
 
     bool GameEnd;
 
@@ -19,8 +24,20 @@ public class ScoreAndTimer : MonoBehaviour
 
     private void Start()
     {
-        HighScore = PlayerPrefs.GetFloat("highscore1");
-        Highscore.text = HighScore.ToString("#.###");
+        LootLockerSDKManager.StartGuestSession((response) =>
+        {
+            if (!response.success)
+            {
+                Debug.Log("error starting LootLocker session");
+
+                return;
+            }
+
+            Debug.Log("successfully started LootLocker session");
+            PlayerPrefs.SetString("PlayerID", response.player_id.ToString());
+        });
+        //Score = PlayerPrefs.GetFloat("score");
+        //Highscore.text = Score.ToString("#.###");
     }
 
     void Update()
@@ -35,25 +52,28 @@ public class ScoreAndTimer : MonoBehaviour
         TimeLeft.text = "TimeLeft:" + b.ToString();
         if (Timer < 0 && !GameEnd)
         {
-            SubmitScore();
             GameEnd = true;
+            if (GameEnd)
+            {
+            SubmitScore();
+
+            }
         }
     }
 
-    public void SubmitScore()
+    void SubmitScore()
     {
-        if(Player.size >= HighScore)
+        string playerID = PlayerPrefs.GetString("PlayerID");
+        LootLockerSDKManager.SubmitScore(playerID, int.Parse(Player.size.ToString("#.###")), ID, (response) =>
         {
-            HighScore = Player.size;
+            if (!response.success)
+            {
+                Debug.Log("error starting LootLocker session");
 
-            PlayerPrefs.SetFloat("highscore1", HighScore);
-            Highscore.text = HighScore.ToString("#.###");
-        }
-    }
-    public void ResetScore()
-    {
-        PlayerPrefs.DeleteKey("highscore1");
-        HighScore = PlayerPrefs.GetFloat("highscore1");
-        Highscore.text = HighScore.ToString("#.###");
+                return;
+            }
+
+            Debug.Log("successfully Submited");
+        });
     }
 }
