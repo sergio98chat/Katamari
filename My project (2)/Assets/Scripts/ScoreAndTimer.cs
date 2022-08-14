@@ -9,10 +9,9 @@ public class ScoreAndTimer : MonoBehaviour
 {
     public BallController Player;
     public TMP_Text Size;
-    public TMP_Text Highscore;
-
+    public TMP_InputField PlayerID;
     public int ID;
-
+    public GameObject NameScore;
     //string MemberID= "123456";
 
     float Score;
@@ -53,18 +52,19 @@ public class ScoreAndTimer : MonoBehaviour
         if (Timer < 0 && !GameEnd)
         {
             GameEnd = true;
+            NameScore.SetActive(true);
             if (GameEnd)
             {
-            SubmitScore();
-
+                //SubmitScore();
             }
         }
     }
 
-    void SubmitScore()
+    public void SubmitScore()
     {
-        string playerID = PlayerPrefs.GetString("PlayerID");
-        LootLockerSDKManager.SubmitScore(playerID, int.Parse(Player.size.ToString("#.###")), ID, (response) =>
+        //string playerID = PlayerPrefs.GetString("PlayerID");
+        float ScoreSend = Player.size * 1000;
+        LootLockerSDKManager.SubmitScore(PlayerID.text, int.Parse(ScoreSend.ToString("####")), ID, (response) =>
         {
             if (!response.success)
             {

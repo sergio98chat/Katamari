@@ -23,10 +23,12 @@ public class GameManager : MonoBehaviour
             }
 
             Debug.Log("successfully started LootLocker session");
+            ShowScores();
         });
     }
     public void SaveName()
     {
+        PlayerPrefs.SetString("PlayerID", MemberID.text);
         LootLockerSDKManager.SetPlayerName(MemberID.text, (response) =>
         {
 
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
                 LootLockerLeaderboardMember[] scores = response.items;
                 for (int i = 0; i < scores.Length; i++)
                 {
-                    Enteries[i].text = (scores[i].rank + ".     " + scores[i].score);
+                    Enteries[i].text = (scores[i].rank + ". " + scores[i].score);
                 }
 
                 if(scores.Length < MaxScores)
