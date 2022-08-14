@@ -10,7 +10,10 @@ public class SceneLoad : MonoBehaviour
     {
         SceneManager.LoadScene("GameScene");
     }
-
+    public void Menu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
     public void leaderBoardShow()
     {
         mainButtons.SetActive(false);

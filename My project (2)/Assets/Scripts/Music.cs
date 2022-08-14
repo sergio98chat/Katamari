@@ -8,7 +8,7 @@ public class Music : MonoBehaviour
     public AudioSource _audioSource;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
     }
