@@ -23,6 +23,7 @@ public class ScoreAndTimer : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = false;
         LootLockerSDKManager.StartGuestSession((response) =>
         {
             if (!response.success)
@@ -41,6 +42,10 @@ public class ScoreAndTimer : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            NameScore.SetActive(true);
+        }
         Size.text = "Size: " + Player.size.ToString("#.###");
 
         if (Timer > 0)
@@ -53,8 +58,10 @@ public class ScoreAndTimer : MonoBehaviour
         {
             GameEnd = true;
             NameScore.SetActive(true);
+            Cursor.visible = true;
             if (GameEnd)
             {
+
                 //SubmitScore();
             }
         }
