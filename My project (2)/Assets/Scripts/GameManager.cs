@@ -22,18 +22,19 @@ public class GameManager : MonoBehaviour
                 return;
             }
 
-            Debug.Log("successfully started LootLocker session");
             ShowScores();
-        });
-    }
-    public void SaveName()
-    {
-        PlayerPrefs.SetString("PlayerID", MemberID.text);
-        LootLockerSDKManager.SetPlayerName(MemberID.text, (response) =>
-        {
 
+            Debug.Log("successfully started LootLocker session");
         });
     }
+    //public void SaveName()
+    //{
+        //PlayerPrefs.SetString("PlayerID", MemberID.text);
+    //    LootLockerSDKManager.SetPlayerName(MemberID.text, (response) =>
+     //   {
+
+     //   });
+   // }
     public void ShowScores()
     {
         LootLockerSDKManager.GetScoreList(ID, MaxScores, (response) =>
@@ -43,14 +44,14 @@ public class GameManager : MonoBehaviour
                 LootLockerLeaderboardMember[] scores = response.items;
                 for (int i = 0; i < scores.Length; i++)
                 {
-                    Enteries[i].text = (scores[i].rank + ". " + scores[i].score);
+                    Enteries[i].text = (scores[i].rank + ".  " + scores[i].member_id + "    " + scores[i].score + " points");
                 }
 
                 if(scores.Length < MaxScores)
                 {
                     for(int i = scores.Length; i < MaxScores; i++)
                     {
-                        Enteries[i].text = (i + 1).ToString() + ".       " + "none";
+                        Enteries[i].text = (i + 1).ToString() + ".   Empty ";
                     }
                 }
             }

@@ -18,7 +18,7 @@ public class ScoreAndTimer : MonoBehaviour
 
     bool GameEnd;
 
-    float Timer = 30.0f;
+    float Timer = 60.0f;
     public TMP_Text TimeLeft;
 
     private void Start()

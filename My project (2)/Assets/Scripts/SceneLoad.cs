@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoad : MonoBehaviour
 {
-    public GameObject Leaderboard, mainButtons;
+    public GameObject Leaderboard, mainButtons,Settings;
     public void LoadFirstSene()
     {
         SceneManager.LoadScene("GameScene");
@@ -21,4 +21,14 @@ public class SceneLoad : MonoBehaviour
         mainButtons.SetActive(true);
         Leaderboard.SetActive(false);
     }
+    public void SettingShow()
+    {
+        mainButtons.SetActive(false);
+        Settings.SetActive(true);
     }
+    public void SettingsHide()
+    {
+        Settings.SetActive(false);
+        mainButtons.SetActive(true);
+    }
+}
