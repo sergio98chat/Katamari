@@ -34,4 +34,9 @@ public class SceneLoad : MonoBehaviour
         Settings.SetActive(false);
         mainButtons.SetActive(true);
     }
+
+    public void leave()
+    {
+        Application.Quit();
+    }
 }

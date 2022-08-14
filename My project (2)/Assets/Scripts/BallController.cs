@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BallController : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class BallController : MonoBehaviour
     [SerializeField] private float rollSpeed;
     [SerializeField] private Rigidbody rb;
     public float size = 1;
+
+    public GameObject FloatText;
 
     void FixedUpdate()
     {
@@ -22,8 +25,19 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.tag == "prop" && collision.transform.localScale.magnitude <= size)
         {
+            float objSize = collision.transform.localScale.magnitude;
             collision.transform.parent = transform;
-            size += collision.transform.localScale.magnitude;
+            size += objSize;
+            if (FloatText)
+            {
+                FloatTextActivate(objSize);
+            }
         }
+    }
+
+    void FloatTextActivate(float objSize)
+    {
+        var go = Instantiate(FloatText, transform.position, Quaternion.identity, transform);
+        go.GetComponent<TextMeshPro>().text = "+"+objSize.ToString("#.###");
     }
 }

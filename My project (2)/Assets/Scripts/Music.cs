@@ -11,6 +11,7 @@ public class Music : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
+        _audioSource.volume = PlayerPrefs.GetFloat("musicVol");
     }
     public void PlayMusic()
     {
@@ -23,6 +24,10 @@ public class Music : MonoBehaviour
             _audioSource.Play();
 
         }
+    }
 
+    public void SaveVol()
+    {
+        PlayerPrefs.SetFloat("musicVol", _audioSource.volume);
     }
 }

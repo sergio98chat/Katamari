@@ -6751,6 +6751,7 @@ MonoBehaviour:
   rollSpeed: 60
   rb: {fileID: 1527165905}
   size: 1
+  FloatText: {fileID: 7126295839233882245, guid: bbe68d773ff92854584be048429c212d, type: 3}
 --- !u!1 &1584039868
 GameObject:
   m_ObjectHideFlags: 0
