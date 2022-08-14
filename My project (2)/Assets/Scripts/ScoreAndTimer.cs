@@ -19,7 +19,7 @@ public class ScoreAndTimer : MonoBehaviour
 
     private void Start()
     {
-        HighScore = PlayerPrefs.GetFloat("highscore");
+        HighScore = PlayerPrefs.GetFloat("highscore1");
         Highscore.text = HighScore.ToString("#.###");
     }
 
@@ -46,14 +46,14 @@ public class ScoreAndTimer : MonoBehaviour
         {
             HighScore = Player.size;
 
-            PlayerPrefs.SetFloat("highscore", HighScore);
+            PlayerPrefs.SetFloat("highscore1", HighScore);
             Highscore.text = HighScore.ToString("#.###");
         }
     }
     public void ResetScore()
     {
-        PlayerPrefs.DeleteKey("highscore");
-        HighScore = PlayerPrefs.GetFloat("highscore");
+        PlayerPrefs.DeleteKey("highscore1");
+        HighScore = PlayerPrefs.GetFloat("highscore1");
         Highscore.text = HighScore.ToString("#.###");
     }
 }
