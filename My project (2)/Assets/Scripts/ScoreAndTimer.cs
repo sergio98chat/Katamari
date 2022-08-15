@@ -10,6 +10,7 @@ public class ScoreAndTimer : MonoBehaviour
     public BallController Player;
     public TMP_Text Size;
     public TMP_InputField PlayerID;
+    public GameObject Sucses;
     public int ID;
     public GameObject NameScore;
     //string MemberID= "123456";
@@ -81,6 +82,7 @@ public class ScoreAndTimer : MonoBehaviour
             }
 
             Debug.Log("successfully Submited");
+            Sucses.SetActive(true);
         });
     }
 }

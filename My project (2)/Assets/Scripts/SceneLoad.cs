@@ -8,7 +8,7 @@ public class SceneLoad : MonoBehaviour
     public GameObject Leaderboard, mainButtons,Settings;
     public void LoadFirstSene()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("Calle");
     }
     public void Menu()
     {

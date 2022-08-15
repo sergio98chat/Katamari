@@ -11,6 +11,7 @@ public class BallController : MonoBehaviour
     public float size = 1;
 
     public GameObject FloatText;
+    public GameObject FloatText2;
 
     void FixedUpdate()
     {
@@ -23,9 +24,9 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "prop" && collision.transform.localScale.magnitude <= size)
+        if (collision.gameObject.tag == "prop" && collision.transform.localScale.magnitude/100 <= size)
         {
-            float objSize = collision.transform.localScale.magnitude;
+            float objSize = collision.transform.localScale.magnitude/100;
             collision.transform.parent = transform;
             size += objSize;
             if (FloatText)
@@ -33,11 +34,24 @@ public class BallController : MonoBehaviour
                 FloatTextActivate(objSize);
             }
         }
+        else if(collision.gameObject.tag == "prop" && collision.transform.localScale.magnitude / 100 >= size)
+        {
+            float difference = collision.transform.localScale.magnitude - size;
+            if (FloatText)
+            {
+                FloatGap(difference);
+            }
+        }
     }
 
     void FloatTextActivate(float objSize)
     {
         var go = Instantiate(FloatText, transform.position, Quaternion.identity, transform);
-        go.GetComponent<TextMeshPro>().text = "+"+objSize.ToString("#.###");
+        go.GetComponent<TextMeshPro>().text = "+"+ objSize.ToString("#.###");
+    }
+    void FloatGap(float difference)
+    {
+        var go = Instantiate(FloatText2, transform.position, Quaternion.identity, transform);
+        go.GetComponent<TextMeshPro>().text = "need " + difference.ToString("#.###");
     }
 }
