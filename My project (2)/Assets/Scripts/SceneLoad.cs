@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoad : MonoBehaviour
 {
-    public GameObject Leaderboard, mainButtons,Settings;
+    public GameObject Leaderboard, mainButtons,Settings,HowTo;
     public void LoadFirstSene()
     {
         SceneManager.LoadScene("Calle");
@@ -32,6 +32,16 @@ public class SceneLoad : MonoBehaviour
     public void SettingsHide()
     {
         Settings.SetActive(false);
+        mainButtons.SetActive(true);
+    }
+    public void HowToshow()
+    {
+        mainButtons.SetActive(false);
+        HowTo.SetActive(true);
+    }
+    public void HowToHide()
+    {
+        HowTo.SetActive(false);
         mainButtons.SetActive(true);
     }
 

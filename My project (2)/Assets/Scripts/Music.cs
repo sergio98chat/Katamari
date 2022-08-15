@@ -10,7 +10,7 @@ public class Music : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
+        //DontDestroyOnLoad(transform.gameObject);
         _audioSource.volume = PlayerPrefs.GetFloat("musicVol");
     }
     public void PlayMusic()
